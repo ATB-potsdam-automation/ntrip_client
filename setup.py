@@ -1,17 +1,19 @@
+from setuptools import find_packages, setup
 import os
-import glob
-from setuptools import setup
+from glob import glob
 
 package_name = 'ntrip_client'
 
 setup(
     name=package_name,
-    version='1.2.0',
-    packages=[package_name],
-    package_dir={'': 'src'},
+    version='1.3.0',
+    packages=find_packages(exclude=['test']),
     data_files=[
-        ('share/ament_index/resource_index/packages', ['resource/' + package_name]),
-        (os.path.join('share', package_name), ['package.xml', *glob.glob('launch/*')]),
+        ('share/ament_index/resource_index/packages',
+            ['resource/' + package_name]),
+        ('share/' + package_name, ['package.xml']),
+        (os.path.join('share', package_name, 'launch'), glob(os.path.join('launch', '*.launch.py'))),
+        (os.path.join('share', package_name, 'config'), glob('config/*.yaml'))
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -29,7 +31,9 @@ setup(
     description='NTRIP client that will publish RTCM corrections to a ROS topic, and optionally subscribe to NMEA messages to send to an NTRIP server',
     license='MIT License',
     tests_require=['pytest'],
-    scripts=[
-      'scripts/ntrip_ros.py'
-    ]
+    entry_points={
+        'console_scripts': [
+            'ntrip_ros = ntrip_client.ntrip_ros:main'
+        ],
+    },
 )

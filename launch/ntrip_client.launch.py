@@ -32,7 +32,7 @@ def generate_launch_description():
                 name='ntrip_client_node',
                 namespace='ntrip_client',
                 package='ntrip_client',
-                executable='ntrip_ros.py',
+                executable='ntrip_ros',
                 parameters=[
                   {
                     # Required parameters used to connect to the NTRIP server

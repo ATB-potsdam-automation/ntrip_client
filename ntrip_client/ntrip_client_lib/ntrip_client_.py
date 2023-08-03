@@ -7,8 +7,8 @@ import socket
 import select
 import logging
 
-from .nmea_parser import NMEAParser
-from .rtcm_parser import RTCMParser
+from ntrip_client.ntrip_client_lib.nmea_parser import NMEAParser
+from ntrip_client.ntrip_client_lib.rtcm_parser import RTCMParser
 
 _CHUNK_SIZE = 1024
 _SOURCETABLE_RESPONSES = [

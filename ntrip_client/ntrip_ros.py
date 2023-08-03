@@ -10,8 +10,8 @@ from rclpy.node import Node
 from std_msgs.msg import Header
 from nmea_msgs.msg import Sentence
 
-from ntrip_client.ntrip_client import NTRIPClient
-from ntrip_client.nmea_parser import NMEA_DEFAULT_MAX_LENGTH, NMEA_DEFAULT_MIN_LENGTH
+from ntrip_client.ntrip_client_lib.ntrip_client_ import NTRIPClient
+from ntrip_client.ntrip_client_lib.nmea_parser import NMEA_DEFAULT_MAX_LENGTH, NMEA_DEFAULT_MIN_LENGTH
 
 # Try to import a couple different types of RTCM messages
 _MAVROS_MSGS_NAME = "mavros_msgs"
@@ -192,7 +192,7 @@ class NTRIPRos(Node):
       message=rtcm
     )
 
-if __name__ == '__main__':
+def main():
   # Start the node
   rclpy.init()
   node = NTRIPRos()
@@ -210,3 +210,6 @@ if __name__ == '__main__':
     
     # Shutdown the node and stop rclpy
     rclpy.shutdown()
+    
+if __name__ == '__main__':
+    main()
