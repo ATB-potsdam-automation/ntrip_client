@@ -29,7 +29,7 @@ def generate_launch_description():
                 parameters=[PathJoinSubstitution( [ FindPackageShare(package_name), 'config', LaunchConfiguration('config_file') ] )],
                 # Uncomment the following section and replace "/gq7/nmea/sentence" with the topic you are sending NMEA on if it is not the one we requested
                 remappings=[
-                 ("/ntrip_client/nmea", "/rover/nmea")
+                 ("/ntrip_client/nmea", "/nmea")
                 ],
           )
       ])

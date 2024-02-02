@@ -1,16 +1,16 @@
 ntrip_client:
   ntrip_client_node:
     ros__parameters:
-      host: 20.185.11.35
+      host: sapos-bb-ntrip.de
       port: 2101
-      mountpoint: VTRI_RTCM3
+      mountpoint: VRS_3_4G_BB
 
       ntrip_version: None
       
       authenticate: True
       
-      username: user
-      password: pass
+      username: 123abc
+      password: 123abc
       
       ssl: False
       
@@ -20,7 +20,7 @@ ntrip_client:
       ca_cert: None
       
       
-      rtcm_frame_id: rover
+      rtcm_frame_id: base
       
       nmea_max_length: 82
       nmea_min_length: 3

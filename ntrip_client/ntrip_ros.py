@@ -40,7 +40,7 @@ class NTRIPRos(Node):
       parameters=[
         ('host', '127.0.0.1'),
         ('port', 2101),
-        ('mountpoint', 'mount'),
+        ('mountpoint', 'mountpoint'),
         ('ntrip_version', 'None'),
         ('authenticate', False),
         ('username', ''),

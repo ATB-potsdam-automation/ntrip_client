@@ -120,6 +120,7 @@ class NTRIPClient:
     # Send the HTTP Request
     try:
       self._server_socket.send(self._form_request())
+      #self._logerr("done\n")
     except Exception as e:
       self._logerr(
         'Unable to send request to server at http://{}:{}'.format(self._host, self._port))
@@ -208,18 +209,20 @@ class NTRIPClient:
     if not self._connected:
       self._logwarn('NMEA sent before client was connected, discarding NMEA')
       return
-
+    self._logdebug("received nmea sentence: " + sentence)
     # Not sure if this is the right thing to do, but python will escape the return characters at the end of the string, so do this manually
     if sentence[-4:] == '\\r\\n':
       sentence = sentence[:-4] + '\r\n'
     elif sentence[-2:] != '\r\n':
       sentence = sentence + '\r\n'
+      
+    sentence = sentence.replace('\'', '')
 
     # Check if it is a valid NMEA sentence
     if not self.nmea_parser.is_valid_sentence(sentence):
       self._logwarn("Invalid NMEA sentence, not sending to server")
       return
-
+    
     # Encode the data and send it to the socket
     try:
       self._server_socket.send(sentence.encode('utf-8'))
